@@ -1,4 +1,4 @@
-# password strength checker
+# password strength checker using python
 import re
 import random
 
