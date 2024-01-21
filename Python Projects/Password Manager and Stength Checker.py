@@ -2,6 +2,7 @@
 import re
 import random
 
+
 class PasswordStrengthChecker:
     def __init__(self, password):
         self.password = password
@@ -18,19 +19,19 @@ class PasswordStrengthChecker:
             score += 2
 
         # Check for uppercase letters
-        if re.search(r'[A-Z]', self.password):
+        if re.search(r"[A-Z]", self.password):
             score += 1
 
         # Check for lowercase letters
-        if re.search(r'[a-z]', self.password):
+        if re.search(r"[a-z]", self.password):
             score += 1
 
         # Check for numbers
-        if re.search(r'\d', self.password):
+        if re.search(r"\d", self.password):
             score += 1
 
         # Check for special characters
-        if re.search(r'[^A-Za-z0-9]', self.password):
+        if re.search(r"[^A-Za-z0-9]", self.password):
             score += 2
 
         # Return password strength based on score
@@ -44,6 +45,7 @@ class PasswordStrengthChecker:
             return "Strong"
         else:
             return "Very Strong"
+
 
 class User:
     def __init__(self, username, password):
@@ -76,10 +78,17 @@ class User:
         uppercase letter, one lowercase letter, one number, and one special
         character.
         """
-        chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()'
-        password = ''.join(random.choice(chars) for i in range(10))
-        while not (re.search(r'[A-Z]', password) and re.search(r'[a-z]', password) and re.search(r'\d', password) and re.search(r'[^A-Za-z0-9]', password)):
-            password = ''.join(random.choice(chars) for i in range(10))
+        chars = (
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
+        )
+        password = "".join(random.choice(chars) for i in range(10))
+        while not (
+            re.search(r"[A-Z]", password)
+            and re.search(r"[a-z]", password)
+            and re.search(r"\d", password)
+            and re.search(r"[^A-Za-z0-9]", password)
+        ):
+            password = "".join(random.choice(chars) for i in range(10))
         return password
 
     def login(self, password):
@@ -93,6 +102,7 @@ class User:
         else:
             print("Welcome back, {}!".format(self.username))
             return True
+
 
 # example usage
 # create a new user with a password
@@ -118,4 +128,3 @@ new_password = user1.reset_password()
 
 # check the strength of the new password
 print(user1.password.check_password_strength())  # prints "Very Strong"
-
