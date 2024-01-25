@@ -2,9 +2,6 @@
 
 {% block body %}
 <h1>Choose Tasks</h1>
-{% if not tasks %}
-<p>You have no tasks to delete</p>
-{% endif %}
 <form action="{% url 'tasks:delete' %}" method="post">
     {% csrf_token %}
 
@@ -12,9 +9,13 @@
     <div>
         <input type="checkbox" name="tasks" value="{{ index }}"> {{ task }}
     </div>
+    {% empty %}
+    <div>No Tasks to Delete!</div>
     {% endfor %}
     <br>
+    {% if tasks %}
     <p><input type="submit" value="Delete Task(s)"></p>
+    {% endif %}
 </form>
 <a href="{% url 'tasks:index' %}">Back to Tasks</a>
 {% endblock %}
