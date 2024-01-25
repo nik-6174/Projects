@@ -1,0 +1,20 @@
+{% extends 'tasks/base.html' %}
+
+{% block body %}
+<h1>Tasks</h1>
+{% if not tasks %}
+<p>You have no tasks to delete</p>
+{% endif %}
+<form action="{% url 'tasks:delete' %}" method="post">
+    {% csrf_token %}
+
+    {% for index, task in tasks %}
+    <div>
+        <input type="checkbox" name="tasks" value="{{ index }}"> {{ task }}
+    </div>
+    {% endfor %}
+    <br>
+    <p><input type="submit" value="Delete Task(s)"></p>
+</form>
+<a href="{% url 'tasks:index' %}">Back to Tasks</a>
+{% endblock %}
