@@ -1,0 +1,608 @@
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Displaying Image</title>
+    <link rel="stylesheet" href="{% static '/home/css/styles.css' %}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Img Tech</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Team</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <h1 class="main-header">Image Processing Operation  - {{emp.name}}</h1>
+    <img class="main-img" src="{{emp.emp_image.url}}" alt="Smiley face" width="250" height="250">
+    <br/>
+
+    <div class="img-description">
+      <h3 class="main-header">Output Image</h3>
+      <h3 class="main-header"><i>Short Explanation</i></h3>
+    {% if emp.name == "GrayScale" %}
+      <p class="main-para">
+        Convert the input image to grayscale, where each pixel value represents the intensity of the light rather than its color. This creates a black-and-white version of the image.
+      </p>
+    {% elif emp.name == "Color" %}
+      <p class="main-para">
+        Enhance the colors of the input image to make them appear more vivid and vibrant. This can help bring out details in the image that may be hard to see otherwise.
+      </p>
+    {% elif emp.name == "Blur" %}
+      <p class="main-para">
+        Apply a blurring effect to the input image, which can help to reduce noise or other unwanted artifacts in the image. This is often used to make images appear smoother or more polished.
+      </p>
+    {% elif emp.name == "Noise ( Gaussian )" %}
+      <p class="main-para">
+        Add Gaussian noise to the input image, which is a random variation in pixel values that can create a "grainy" or "fuzzy" appearance. This can be used to simulate the effect of noise in real-world images, or to create a more abstract or artistic effect.
+      </p>
+    {% elif emp.name == "Noise ( Salt and Pepper )" %}
+      <p class="main-para">
+        Add salt and pepper noise to the input image, which is a random variation in pixel values that can create a "speckled" or "dotted" appearance. This can be used to simulate the effect of noise in real-world images, or to create a more abstract or artistic effect.
+      </p>
+    {% elif emp.name == "Resizing ( 512 x 512 )" %}
+      <p class="main-para">
+        Resize the input image to a new size of 512 x 512 pixels, which can help to make the image more suitable for specific applications or use cases. This can also be used to reduce the overall size of the image for faster processing or storage.
+      </p>
+    {% elif emp.name == "Resizing ( 16 x 16 )" %}
+      <p class="main-para">
+        Resize the input image to a new size of 16 x 16 pixels, which can help to make the image more suitable for specific applications or use cases. This can also be used to reduce the overall size of the image for faster processing or storage.
+      </p>
+    {% elif emp.name == "Contrast ( 0-255 )" %}
+      <p class="main-para">
+        Adjust the contrast of the input image by stretching the range of pixel values. This can help to make the image appear more vivid or dramatic, and can bring out details that may be hard to see otherwise. The range of contrast adjustment is between 0-255.
+      </p>
+    {% elif emp.name == "Contrast ( 0-15 )" %}
+      <p class="main-para">
+        Adjust the contrast of the input image by stretching the range of pixel values. This can help to make the image appear more vivid or dramatic, and can bring out details that may be hard to see otherwise. The range of contrast adjustment is between 0-15.
+      </p>
+    {% elif emp.name == "Contrast ( 0-1 )" %}
+    <p class="main-para">
+        Adjusting contrast of an image is a way to increase or decrease the difference between the dark and light regions in an image. Here, contrast is adjusted by scaling pixel values by a factor between 0 and 1.
+    </p>
+    {% elif emp.name == "Rotation ( 15 degrees )" %}
+    <p class="main-para">
+        Rotating an image by 15 degrees means rotating it clockwise or counterclockwise by 15 degrees. This will change the orientation of the image by 15 degrees, which may cause some parts of the image to be cropped out or black areas to appear.
+    </p>
+    {% elif emp.name == "Rotation ( 45 degrees )" %}
+    <p class="main-para">
+        Rotating an image by 45 degrees means rotating it clockwise or counterclockwise by 45 degrees. This will change the orientation of the image by 45 degrees, which may cause some parts of the image to be cropped out or black areas to appear.
+    </p>
+    {% elif emp.name == "Rotation ( 90 degrees )" %}
+    <p class="main-para">
+        Rotating an image by 90 degrees means rotating it clockwise or counterclockwise by 90 degrees. This will change the orientation of the image by 90 degrees, which may cause some parts of the image to be cropped out or black areas to appear.
+    </p>
+    {% elif emp.name == "Rotation ( 180 degrees )" %}
+    <p class="main-para">
+        Rotating an image by 180 degrees means rotating it clockwise or counterclockwise by 180 degrees. This will flip the image upside down or left to right, which may cause some parts of the image to be cropped out or black areas to appear.
+    </p>
+    {% elif emp.name == "Histogram Equalization" %}
+    <p class="main-para">
+        Histogram equalization is a technique to enhance the contrast of an image by redistributing pixel intensities. In this technique, the image histogram is modified to make the intensities more evenly distributed across the range of possible values.
+    </p>
+    {% endif %}
+
+    </div>
+    <!-- Inbuilt function code -->
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              In-built Function
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              {% if emp.name == "GrayScale" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+# GrayScale function
+def grayscale(image):
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    return gray_image
+
+# Example usage of GrayScale function
+image = cv2.imread('image.jpg')
+gray_image = grayscale(image)
+cv2.imshow('Gray Image', gray_image)
+cv2.waitKey(0)
+              </code></pre>
+              {% elif emp.name == "Color" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+# Color function
+def color(image):
+    color_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    return color_image
+
+# Example usage of Color function
+image = cv2.imread('image.jpg')
+color_image = color(image)
+cv2.imshow('Color Image', color_image)
+cv2.waitKey(0)
+              </code></pre>
+              {% elif emp.name == "Blur" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+def blur(img, kernel_size=(5,5)):
+    blur = cv2.GaussianBlur(img, kernel_size, 0)
+    return blur
+
+# Example usage
+img = cv2.imread('image.jpg')
+blur_img = blur(img, kernel_size=(9,9))
+cv2.imshow('Blurred Image', blur_img)
+cv2.waitKey(0)
+
+              </code></pre>
+              {% elif emp.name == "Noise ( Gaussian )" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+import numpy as np
+
+def gaussian_noise(img, mean=0, var=0.01):
+    h, w, c = img.shape
+    sigma = var ** 0.5
+    noise = np.random.normal(mean, sigma, (h, w, c))
+    noisy_img = img + noise
+    noisy_img = np.clip(noisy_img, 0, 255)
+    noisy_img = noisy_img.astype(np.uint8)
+    return noisy_img
+
+# Example usage
+img = cv2.imread('image.jpg')
+noisy_img = gaussian_noise(img, mean=0, var=0.1)
+
+              </code></pre>
+              {% elif emp.name == "Noise ( Salt and Pepper )" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+import numpy as np
+
+def salt_and_pepper_noise(img, prob=0.01):
+    h, w, c = img.shape
+    noise = np.zeros((h, w), dtype=np.float32)
+    thres = 1 - prob
+    for i in range(h):
+        for j in range(w):
+            rdn = np.random.rand()
+            if rdn < prob:
+                noise[i][j] = 0
+            elif rdn > thres:
+                noise[i][j] = 1
+            else:
+                noise[i][j] = img[i][j]
+    noisy_img = cv2.convertScaleAbs(noise, alpha=255)
+    return noisy_img
+
+# Example usage
+img = cv2.imread('image.jpg')
+noisy_img = salt_and_pepper_noise(img, prob=0.05)
+cv2.imshow('Noisy Image', noisy_img)
+cv2.waitKey(0)
+
+              </code></pre>
+              {% elif emp.name == "Resizing ( 512 x 512 )" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+def resize_512(img):
+    resized_img = cv2.resize(img, (512, 512))
+    return resized_img
+
+# Example usage
+img = cv2.imread('image.jpg')
+resized_img = resize_512(img)
+cv2.imshow('Resized Image', resized_img)
+cv2.waitKey(0)
+
+              </code></pre>
+              {% elif emp.name == "Resizing ( 16 x 16 )" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+def resize_opencv(img_path, output_size):
+    img = cv2.imread(img_path)
+    img_resized = cv2.resize(img, output_size)
+    cv2.imshow("Resized Image", img_resized)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+# Example usage
+resize_opencv("image.jpg", (16, 16))
+
+              </code></pre>
+              {% elif emp.name == "Contrast ( 0-255 )" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+def adjust_contrast(img, level):
+    """
+    Adjust the contrast of an image given a contrast level between 0 and 255.
+    """
+    if level < 0:
+        level = 0
+    elif level > 255:
+        level = 255
+    factor = (259 * (level + 255)) / (255 * (259 - level))
+    new_img = cv2.addWeighted(img, factor, img, 0, 0)
+    return new_img
+
+# Example usage:
+img = cv2.imread("image.jpg")
+contrast_img = adjust_contrast(img, 150)
+cv2.imshow("Original Image", img)
+cv2.imshow("Contrast Adjusted Image", contrast_img)
+cv2.waitKey(0)
+
+              </code></pre>
+              {% elif emp.name == "Contrast ( 0-15 )" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+def adjust_contrast(img, level):
+    """
+    Adjust the contrast of an image given a contrast level between 0 and 15.
+    """
+    if level < 0:
+        level = 0
+    elif level > 15:
+        level = 15
+    factor = (259 * (level + 255)) / (255 * (259 - level))
+    new_img = cv2.addWeighted(img, factor, img, 0, 0)
+    return new_img
+
+# Example usage:
+img = cv2.imread("image.jpg")
+contrast_img = adjust_contrast(img, 8)
+cv2.imshow("Original Image", img)
+cv2.imshow("Contrast Adjusted Image", contrast_img)
+cv2.waitKey(0)
+
+              </code></pre>
+              {% elif emp.name == "Contrast ( 0-1 )" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+def adjust_contrast(img, level):
+    """
+    Adjust the contrast of an image given a contrast level between 0 and 1.
+    """
+    if level < 0:
+        level = 0
+    elif level > 1:
+        level = 1
+    factor = (259 * (level + 255)) / (255 * (259 - level))
+    new_img = cv2.addWeighted(img, factor, img, 0, 0)
+    return new_img
+
+# Example usage:
+img = cv2.imread("image.jpg")
+contrast_img = adjust_contrast(img, 0.5)
+cv2.imshow("Original Image", img)
+
+              </code></pre>
+              {% elif emp.name == "Rotation ( 15 degrees )" %}
+              <pre><code class="python" style="text-align: left;">
+import numpy as np
+import cv2
+
+# define the function to rotate the image
+def rotate_image(img, angle):
+    height, width = img.shape[:2]
+    angle = np.deg2rad(angle)
+    cos = np.cos(angle)
+    sin = np.sin(angle)
+    center = (width // 2, height // 2)
+
+    result = np.zeros((height, width, 3), dtype=img.dtype)
+    for i in range(height):
+        for j in range(width):
+            x, y = j - center[0], i - center[1]
+            x_new, y_new = x * cos - y * sin, x * sin + y * cos
+            x_new += center[0]
+            y_new += center[1]
+            if x_new >= 0 and x_new < width and y_new >= 0 and y_new < height:
+                result[i, j, :] = img[int(y_new), int(x_new), :]
+
+    return result
+
+
+# Load the image
+img = cv2.imread("PISA.jpg")
+
+
+# Get the image height and width
+(h, w) = img.shape[:2]
+
+# angle
+angle=15
+
+# Calculate the center of the image
+center = (w / 2, h / 2)
+
+# Get the rotation matrix from built-in function
+rotation_mat = cv2.getRotationMatrix2D(center, angle, 1.0)
+result_2 = cv2.warpAffine(img, rotation_mat, (w, h), flags=cv2.INTER_LINEAR)
+
+# Perform the rotation
+result = rotate_image(img, angle)
+
+# Display the rotated image
+cv2.imshow("Rotated Image from manual function", result)
+cv2.imshow("Rotated Image from inbuilt function", result_2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+              </code></pre>
+              {% elif emp.name == "Rotation ( 45 degrees )" %}
+              <pre><code class="python" style="text-align: left;">
+import numpy as np
+import cv2
+
+# define the function to rotate the image
+def rotate_image(img, angle):
+    height, width = img.shape[:2]
+    angle = np.deg2rad(angle)
+    cos = np.cos(angle)
+    sin = np.sin(angle)
+    center = (width // 2, height // 2)
+
+    result = np.zeros((height, width, 3), dtype=img.dtype)
+    for i in range(height):
+        for j in range(width):
+            x, y = j - center[0], i - center[1]
+            x_new, y_new = x * cos - y * sin, x * sin + y * cos
+            x_new += center[0]
+            y_new += center[1]
+            if x_new >= 0 and x_new < width and y_new >= 0 and y_new < height:
+                result[i, j, :] = img[int(y_new), int(x_new), :]
+
+    return result
+
+
+# Load the image
+img = cv2.imread("PISA.jpg")
+
+
+# Get the image height and width
+(h, w) = img.shape[:2]
+
+# angle
+angle=45
+
+# Calculate the center of the image
+center = (w / 2, h / 2)
+
+# Get the rotation matrix from built-in function
+rotation_mat = cv2.getRotationMatrix2D(center, angle, 1.0)
+result_2 = cv2.warpAffine(img, rotation_mat, (w, h), flags=cv2.INTER_LINEAR)
+
+# Perform the rotation
+result = rotate_image(img, angle)
+
+# Display the rotated image
+cv2.imshow("Rotated Image from manual function", result)
+cv2.imshow("Rotated Image from inbuilt function", result_2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+              </code></pre>
+              {% elif emp.name == "Rotation ( 90 degrees )" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+
+import numpy as np
+import cv2
+
+# define the function to rotate the image
+def rotate_image(img, angle):
+    height, width = img.shape[:2]
+    angle = np.deg2rad(angle)
+    cos = np.cos(angle)
+    sin = np.sin(angle)
+    center = (width // 2, height // 2)
+
+    result = np.zeros((height, width, 3), dtype=img.dtype)
+    for i in range(height):
+        for j in range(width):
+            x, y = j - center[0], i - center[1]
+            x_new, y_new = x * cos - y * sin, x * sin + y * cos
+            x_new += center[0]
+            y_new += center[1]
+            if x_new >= 0 and x_new < width and y_new >= 0 and y_new < height:
+                result[i, j, :] = img[int(y_new), int(x_new), :]
+
+    return result
+
+
+# Load the image
+img = cv2.imread("PISA.jpg")
+
+
+# Get the image height and width
+(h, w) = img.shape[:2]
+
+# angle
+angle=90
+
+# Calculate the center of the image
+center = (w / 2, h / 2)
+
+# Get the rotation matrix from built-in function
+rotation_mat = cv2.getRotationMatrix2D(center, angle, 1.0)
+result_2 = cv2.warpAffine(img, rotation_mat, (w, h), flags=cv2.INTER_LINEAR)
+
+# Perform the rotation
+result = rotate_image(img, angle)
+
+# Display the rotated image
+cv2.imshow("Rotated Image from manual function", result)
+cv2.imshow("Rotated Image from inbuilt function", result_2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+              </code></pre>
+              {% elif emp.name == "Rotation ( 180 degrees )" %}
+              <pre><code class="python" style="text-align: left;">
+import numpy as np
+import cv2
+
+# define the function to rotate the image
+def rotate_image(img, angle):
+    height, width = img.shape[:2]
+    angle = np.deg2rad(angle)
+    cos = np.cos(angle)
+    sin = np.sin(angle)
+    center = (width // 2, height // 2)
+
+    result = np.zeros((height, width, 3), dtype=img.dtype)
+    for i in range(height):
+        for j in range(width):
+            x, y = j - center[0], i - center[1]
+            x_new, y_new = x * cos - y * sin, x * sin + y * cos
+            x_new += center[0]
+            y_new += center[1]
+            if x_new >= 0 and x_new < width and y_new >= 0 and y_new < height:
+                result[i, j, :] = img[int(y_new), int(x_new), :]
+
+    return result
+
+
+# Load the image
+img = cv2.imread("PISA.jpg")
+
+
+# Get the image height and width
+(h, w) = img.shape[:2]
+
+# angle
+angle=180
+
+# Calculate the center of the image
+center = (w / 2, h / 2)
+
+# Get the rotation matrix from built-in function
+rotation_mat = cv2.getRotationMatrix2D(center, angle, 1.0)
+result_2 = cv2.warpAffine(img, rotation_mat, (w, h), flags=cv2.INTER_LINEAR)
+
+# Perform the rotation
+result = rotate_image(img, angle)
+
+# Display the rotated image
+cv2.imshow("Rotated Image from manual function", result)
+cv2.imshow("Rotated Image from inbuilt function", result_2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+              </code></pre>
+              {% elif emp.name == "Histogram Equalization" %}
+              <pre><code class="python" style="text-align: left;">
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+# read the image file into memory using cv2.imread()
+img_cv2 = cv2.imread('pout-dark.jpg', 0)
+
+# apply histogram equalization using cv2.equalizeHist()
+img_cv2_eq = cv2.equalizeHist(img_cv2)
+
+# calculate histogram of the image using np.histogram()
+hist, bins = np.histogram(img_cv2, 256, [0, 256])
+
+# calculate the cumulative distribution function
+cdf = hist.cumsum()
+cdf_normalized = cdf * hist.max() / cdf.max()
+
+# equalize the histogram using the CDF
+img_eq = np.interp(img_cv2.flatten(), bins[:-1], cdf_normalized).reshape(img_cv2.shape)
+
+# display the original and equalized images side by side using matplotlib.pyplot.imshow()
+fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(10, 10))
+
+axs[0, 0].imshow(img_cv2, cmap='gray')
+axs[0, 0].set_title('Original - cv2')
+axs[0, 1].imshow(img_cv2_eq, cmap='gray')
+axs[0, 1].set_title('Equalized - cv2')
+axs[1, 0].imshow(img_cv2, cmap='gray')
+axs[1, 0].set_title('Original - user-defined')
+axs[1, 1].imshow(img_eq, cmap='gray')
+axs[1, 1].set_title('Equalized - user-defined')
+
+for ax in axs.flat:
+    ax.axis('off')
+
+plt.show()
+              </code></pre>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- User-defined code -->
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              User-defined function
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TechStack -->
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              TechStack
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br/>
+      <a class="main-link btn btn-primary" href="{% url 'home' %}">Return to HomePage</a>
+
+</body>
+
+</html>
