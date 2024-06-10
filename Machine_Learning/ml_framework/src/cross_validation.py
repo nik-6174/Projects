@@ -2,6 +2,16 @@ import pandas as pd
 from sklearn import model_selection
 import os
 
+'''
+types of problem types:
+1. binary_classification
+2. multilabel_classification
+3. single_col_regression
+4. multi_col_regression
+5. holdout
+
+'''
+
 
 class CrossValidation:
     def __init__(
@@ -10,6 +20,7 @@ class CrossValidation:
             target_cols,
             shuffle,
             problem_type="binary_classification",
+            multilabel_delimiter=",",
             num_folds=5,
             random_state=42
         ):
@@ -20,6 +31,7 @@ class CrossValidation:
         self.num_folds = num_folds
         self.shuffle = shuffle
         self.random_state = random_state
+        self.multilabel_delimiter = multilabel_delimiter
 
         if self.shuffle:
             self.dataframe = self.dataframe.sample(frac=1).reset_index(drop=True)
@@ -54,16 +66,23 @@ class CrossValidation:
             self.dataframe.loc[:len(self.dataframe) - num_holdout_samples, 'kfold'] = 0
             self.dataframe.loc[len(self.dataframe) - num_holdout_samples:, 'kfold'] = 1
 
+        elif self.problem_type == "multilabel_classification":
+            if self.num_targets != 1:
+                raise Exception("Invalid number of targets for this problem type")
+            targets = self.dataframe[self.target_cols[0]].apply(lambda x: len(str(x).split(self.multilabel_delimiter)))
+            kf = model_selection.StratifiedKFold(n_splits=self.num_folds)
+        
+            for fold, (train_idx, val_idx) in enumerate(kf.split(X=self.dataframe, y=targets)):
+                self.dataframe.loc[val_idx, "kfold"] = fold
+
         else:
             raise Exception("Problem type not defined!")
-
-
 
         return self.dataframe
     
 if __name__ == "__main__":
-    df = pd.read_csv(os.path.join("input", "train.csv"), )
-    cv = CrossValidation(df, target_cols=["target"], shuffle=False, problem_type="holdout_20")
+    df = pd.read_csv(os.path.join("input", "train_multilabel.csv"), )
+    cv = CrossValidation(df, shuffle=True, target_cols=["attribute_ids"], problem_type="multilabel_classification", multilabel_delimiter=" ")
     df_split = cv.split()
     print(df_split.head())
     print(df_split.kfold.value_counts())
