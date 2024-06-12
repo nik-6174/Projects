@@ -3,6 +3,8 @@ import re
 import random
 
 
+
+
 class PasswordStrengthChecker:
     def __init__(self, password):
         self.password = password
